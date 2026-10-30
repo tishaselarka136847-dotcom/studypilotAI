@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-surface: 248 250 252;
+  --c-surface-low: 241 245 249;
+  --c-surface-container: 234 237 255;
+  --c-surface-high: 226 232 240;
+  --c-card: 255 255 255;
+  --c-ink: 15 23 42;
+  --c-muted: 71 85 105;
+  --c-line: 226 232 240;
+  --c-primary-soft: 239 246 255;
+  --c-violet-soft: 245 243 255;
+  --c-teal-soft: 240 253 250;
+  --c-danger-soft: 254 226 226;
+  --c-warn-soft: 254 243 199;
+}
+.dark {
+  --c-surface: 11 15 26;
+  --c-surface-low: 22 28 44;
+  --c-surface-container: 30 38 60;
+  --c-surface-high: 40 49 74;
+  --c-card: 18 24 39;
+  --c-ink: 241 245 249;
+  --c-muted: 160 174 192;
+  --c-line: 40 49 74;
+  --c-primary-soft: 23 37 84;
+  --c-violet-soft: 46 16 101;
+  --c-teal-soft: 4 47 46;
+  --c-danger-soft: 69 10 10;
+  --c-warn-soft: 69 26 3;
+}
+
+html, body { overflow-x: hidden; }
+body { background: rgb(var(--c-surface)); color: rgb(var(--c-ink)); font-family: var(--font-inter), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.tnum { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; border-radius: 6px; }
+
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-card shadow-card; }
+  .btn { @apply inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition-all active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50; }
+  .btn-primary { @apply btn bg-primary text-white hover:bg-primary-dark; }
+  .btn-ai { @apply btn bg-gradient-to-r from-violet to-violet-dark text-white hover:opacity-95; }
+  .btn-secondary { @apply btn border border-line bg-card text-ink hover:bg-surface-low; }
+  .btn-danger { @apply btn bg-danger text-white hover:opacity-90; }
+  .btn-ghost { @apply btn text-muted hover:bg-surface-low; }
+  .btn-sm { @apply h-8 px-3 text-xs; }
+  .input { @apply h-10 w-full rounded-lg border border-line bg-card px-3 text-sm text-ink placeholder:text-muted/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30; }
+  textarea.input { @apply h-auto py-2; }
+  .label { @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-muted; }
+  .pill { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-semibold; }
+  .pill-ai { @apply pill border border-violet/20 bg-violet-soft text-violet; }
+  .pill-teal { @apply pill border border-teal/20 bg-teal-soft text-teal; }
+  .pill-blue { @apply pill bg-primary-soft text-primary; }
+  .pill-gray { @apply pill bg-surface-high text-muted; }
+  .pill-red { @apply pill bg-danger-soft text-danger; }
+  .pill-amber { @apply pill bg-warn-soft text-warn; }
+  .h1 { @apply font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl; }
+  .h2 { @apply font-display text-lg font-semibold text-ink; }
+}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fadeUp .25s ease-out both; }
+@keyframes bounceDot { 0%, 80%, 100% { transform: scale(.6); opacity: .5; } 40% { transform: scale(1); opacity: 1; } }
+.dot { animation: bounceDot 1.2s infinite ease-in-out both; }
+.flip { perspective: 1200px; }
+.flip-inner { transition: transform .5s; transform-style: preserve-3d; }
+.flip-inner.is-flipped { transform: rotateY(180deg); }
+.flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
